@@ -1,0 +1,106 @@
+.review {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  background-color: #2a287a;
+
+  &-header {
+    font-size: 25px;
+    font-weight: 700;
+  }
+
+  &-question {
+    width: 80%;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  &-answer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    &--yourAnswer {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      &--correct {
+        color: #4caf50;
+        font-weight: 700;
+      }
+
+      &--wrong {
+        color: #f44336;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &-btn {
+    display: flex;
+    width: 25%;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+
+    button {
+      width: 50%;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: none;
+      background-color: #5aa5ed;
+      transition: background-color 0.3s ease-in-out;
+      font-family: "poppins";
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #4a8dd6;
+      }
+    }
+  }
+
+  .back-to-home {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 50px;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    background-color: #bd2396;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #a31e83;
+    }
+  }
+
+  .play-again {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 50px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    background-color: #5aa5ed;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #4a8dd6;
+    }
+  }
+}
