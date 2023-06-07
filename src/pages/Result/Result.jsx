@@ -38,6 +38,12 @@ function Result() {
     navigate("/review");
   };
 
+  const handleBackToHome = () => {
+    setTime(0);
+    setScore(0);
+    navigate("/");
+  };
+
   return (
     <main className="result">
       {isLoading ? (
@@ -77,6 +83,10 @@ function Result() {
             <button onClick={handleReview}>Review</button>
             <button onClick={handlePlayAgain}>Play Again</button>
           </div>
+
+          <button className="back-to-home" onClick={handleBackToHome}>
+            Back To Home
+          </button>
         </div>
       )}
     </main>

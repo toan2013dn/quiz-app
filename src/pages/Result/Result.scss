@@ -123,4 +123,18 @@
       }
     }
   }
+  .back-to-home {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: transparent;
+    border: 1px solid #a31e83;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #a31e83;
+      color: white;
+    }
+  }
 }
