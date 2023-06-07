@@ -4,10 +4,13 @@ import { useQuestionsStore } from "../../store";
 import "./Quizzes.scss";
 
 function Quizzes() {
-  const [setQuestionsData] = useQuestionsStore((state) => [
+  const [questionsData, setQuestionsData] = useQuestionsStore((state) => [
+    state.questionsData,
     state.setQuestionsData,
   ]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [shuffledAnswers, setShuffledAnswers] = useState([]);
 
   const URL = `https://opentdb.com/api.php?amount=5`;
 
@@ -16,18 +19,7 @@ function Quizzes() {
       try {
         const response = await fetch(URL);
         const data = await response.json();
-        const formattedResults = data.results.map((result) => ({
-          ...result,
-          question: result.question.replace(/(&quot;|&#039;)/g, '"'),
-          correct_answer: result.correct_answer.replace(
-            /(&quot;|&#039;)/g,
-            '"'
-          ),
-          incorrect_answers: result.incorrect_answers.map((answer) =>
-            answer.replace(/(&quot;|&#039;)/g, "'")
-          ),
-        }));
-        setQuestionsData(formattedResults);
+        setQuestionsData(data.results);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -38,6 +30,17 @@ function Quizzes() {
     setIsLoading(true);
     fetchQuestionsData();
   }, []);
+
+  useEffect(() => {
+    if (questionsData.length > 0) {
+      const currentQuestionData = questionsData[currentQuestion];
+      const answers = currentQuestionData.incorrect_answers.concat(
+        currentQuestionData.correct_answer
+      );
+      const shuffledAnswers = answers.sort(() => Math.random() - 0.5);
+      setShuffledAnswers(shuffledAnswers);
+    }
+  }, [questionsData, currentQuestion]);
 
   return (
     <main className="quizzes">
@@ -52,7 +55,11 @@ function Quizzes() {
           <span></span>
         </div>
       ) : (
-        <QuizzesContent setIsLoading={setIsLoading} />
+        <QuizzesContent
+          shuffledAnswers={shuffledAnswers}
+          currentQuestion={currentQuestion}
+          setCurrentQuestion={setCurrentQuestion}
+        />
       )}
     </main>
   );
