@@ -19,7 +19,7 @@ $ npm install
 $ npm run dev
 
 ## Link
-[QuizAppEnlab](https://quiz-app-enlab.vercel.app/)
+[QuizAppEnlab](https://quiz-app-enlab1.vercel.app/)
 
 ## Features
 
