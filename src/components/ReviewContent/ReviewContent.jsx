@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ReactHtmlParser from "react-html-parser";
 import { useQuestionsStore, useReviewStore } from "../../store";
+import ReactHtmlParser from "react-html-parser";
 import "./ReviewContent.scss";
 
 function ReviewContent() {
