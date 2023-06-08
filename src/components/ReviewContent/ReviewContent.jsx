@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ReactHtmlParser from "react-html-parser";
 import { useQuestionsStore, useReviewStore } from "../../store";
 import "./ReviewContent.scss";
 
@@ -29,11 +30,11 @@ function ReviewContent() {
           Question {currentQuestion + 1}/{questionsData.length}
         </div>
         <div className="review-question">
-          {questionsData[currentQuestion].question}
+          {ReactHtmlParser(questionsData[currentQuestion].question)}
         </div>
         <div className="review-answer">
           <div className="review-answer--yourAnswer">
-            Your Answer: {reviewAnswers[currentQuestion]}
+            Your Answer: {ReactHtmlParser(reviewAnswers[currentQuestion])}
             {reviewAnswers[currentQuestion] ===
             questionsData[currentQuestion].correct_answer ? (
               <div className="review-answer--yourAnswer--correct">Correct</div>
@@ -42,7 +43,8 @@ function ReviewContent() {
             )}
           </div>
           <div className="review-answer--correctAnswer">
-            Correct Answer: {questionsData[currentQuestion].correct_answer}
+            Correct Answer:{" "}
+            {ReactHtmlParser(questionsData[currentQuestion].correct_answer)}
           </div>
         </div>
         <div className="review-btn">
